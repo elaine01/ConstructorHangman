@@ -8,23 +8,26 @@ var Letter = function(character) {
 	this.guessed = false;
 	this.revealCharacter = function() {
 		if (this.guessed) {
-			console.log(this.character);
+			return this.character;
 		} else {
-			console.log("_");
+			return "_";
 		}
 	}
 	this.check = function(character) {
-		if (character === this.character) {
+		console.log("17 ", character.character);
+		console.log("18 ", this.character);
+		if (character.character === this.character) {
 			this.guessed = true;
+			console.log('21', this.guessed);
 		}
 	}
 }
 
 
-var a = new Letter("a");
-a.guessed = true;
-a.revealCharacter();
-// console.log(a);
+module.exports = Letter;
+
+// var a = new Letter("a");
+
 
 
 // * A string value to store the underlying character for the letter
