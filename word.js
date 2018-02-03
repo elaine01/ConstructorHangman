@@ -51,11 +51,13 @@ var Word = function(word) {
 	}
 }
 
+module.exports = Word;
 
-var happy = new Word("happy");
-happy.getLetters();
-console.log(happy);
-happy.letterCheck("a");
+
+// var happy = new Word("happy");
+// happy.getLetters();
+// console.log(happy);
+// happy.letterCheck("a");
 
 // console.log("test ", happy.array);
 // console.log(happy.letters[0].character);
