@@ -99,6 +99,9 @@ inquirer.prompt([
 		    		} else {
 		    			console.log("\n You used up all your guesses. Play again.");
 		    		}
+		    	} else {
+		    		console.log("\n \n !! You already guessed that letter. Please pick another letter. !! \n \n");
+		    		guessPrompt();
 		    	}
 		      
 		      // console.log("You used up all your guesses. Play again.");
