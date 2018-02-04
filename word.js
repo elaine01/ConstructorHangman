@@ -14,7 +14,7 @@ var Letter = require('./letter.js');
 
 
 
-var Word = function(word) {
+function Word(word) {
 	this.word = word;
 	this.actualLetters = [];
 	this.letters = [];
