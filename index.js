@@ -10,7 +10,6 @@ var wordList = [
 ];
 
 // * Randomly selects a word and uses the `Word` constructor to store it
-
 var randomNum = Math.floor(Math.random() * wordList.length);
 var currentWord = wordList[randomNum];
 var currentGuesses = [];
@@ -23,8 +22,8 @@ console.log("   +++++++++++++++++++++++++");
 console.log("   +                       +");
 console.log("   +  Welcome to Hangman!  +");
 console.log("   +                       +");
-console.log("   +++++++++++++++++++++++++");
-console.log("");
+console.log("   +++++++++++++++++++++++++ \n");
+
 inquirer.prompt([
   {
     type: "confirm",
@@ -35,15 +34,10 @@ inquirer.prompt([
 ]).then(function(answer) {
 
 	if (!answer.confirm) { // don't play if the user confirms a 'no'
-		console.log("");
-		console.log("    Sorry to see you go. Hope to see you next time!");
-		console.log("");
+		console.log("\n >>> Sorry to see you go. Hope to see you next time! \n");
 		return 
 	} else { // start game
-		console.log("");
-		console.log("    New Game! Only lowercase letters please");
-		console.log("");
-		console.log("");
+		console.log("\n >>> New Game! Only lowercase letters please \n \n");
 
 	  var newWord = new Word(currentWord);
 	  newWord.getLetters();
@@ -54,8 +48,8 @@ inquirer.prompt([
 	  var guessPrompt = function() {
 		// if statement to ensure that our questions are only asked five times
 		if (count < 10) {
-			console.log("You currently have " + guessesLeft + " guesses left");
-			console.log("Your guesses so far: " + currentGuesses);
+			console.log(" >>> You currently have " + guessesLeft + " guesses left");
+			console.log(" >>> Your guesses so far: " + currentGuesses.join(", ") + "\n");
 
 		  inquirer.prompt([
 		    {
@@ -88,9 +82,7 @@ inquirer.prompt([
 				    	console.log(newWord.showWord());
 				    	count++;
 				    	guessesLeft--;
-							console.log("");
-				    	console.log("You guessed: " + userGuess);
-				    	console.log("");
+				    	console.log("\n You guessed: " + userGuess + "\n");
 				    //	console.log("index.js res", res.userGuess);
 		    		} else {
 		    			console.log("Correct guess!");
@@ -99,19 +91,20 @@ inquirer.prompt([
 		    			} else {
 		    				console.log("--------------------------------");
 					    	console.log(newWord.showWord());
-								console.log("");
-					    	console.log("You guessed: " + userGuess);
-					    	console.log("");
+					    	console.log("\n You guessed: " + userGuess +"\n");
 		    			}
 		    		}
 		    		if (guessesLeft > 0 && newWord.wordFound === false) {
 		    			guessPrompt();
+		    		} else {
+		    			console.log("\n You used up all your guesses. Play again.");
 		    		}
 		    	}
-		      // run the askquestion function again so as to either end the loop or ask the questions again
-		      guessPrompt();
+		      
+		      // console.log("You used up all your guesses. Play again.");
 		    });
 		  }
+
 		  // else {
 		  //   console.log("You used up all your guesses. Play again.");
 		  // }
