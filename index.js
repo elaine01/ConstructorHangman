@@ -37,7 +37,13 @@ inquirer.prompt([
 		console.log("\n >>> Sorry to see you go. Hope to see you next time! \n");
 		return 
 	} else { // start game
-		console.log("\n >>> New Game! Only lowercase letters please \n \n");
+
+
+		// TEST
+		console.log(currentWord);
+
+
+		console.log("\n >>> New Game! \n \n");
 
 	  var newWord = new Word(currentWord);
 	  newWord.getLetters();
@@ -48,7 +54,7 @@ inquirer.prompt([
 	  var guessPrompt = function() {
 		// if statement to ensure that our questions are only asked five times
 		if (count < 10) {
-			console.log(" >>> You currently have " + guessesLeft + " guesses left");
+			console.log("\n >>> You currently have " + guessesLeft + " guesses left");
 			console.log(" >>> Your guesses so far: " + currentGuesses.join(", ") + "\n");
 
 		  inquirer.prompt([
@@ -65,20 +71,24 @@ inquirer.prompt([
 		      }
 		    },
 		    ]).then(function(character) {
-		    	var userGuess = character.userGuess;
+		    	var userGuess = character.userGuess.toLowerCase();
 		    	var haveGuessed = false;
 		    	for (var k = 0; k < currentGuesses.length; k++) {
 		    		if (userGuess === currentGuesses[k]) {
-		    			haveGuessed = true;
+		    			haveGuessed = true; // log all current guesses
+		    			console.log("index 79: haveGuessed = true");
 		    		}
 		    	}
-		    	if (haveGuessed === false) {
+		    	if (haveGuessed === false) { // if user didn't already guess the letter
+		    		console.log("index 83: haveguessed === false");
 		    		currentGuesses.push(userGuess);
 		    		var found = newWord.letterCheck(userGuess);
+		    		console.log("index found ", found);
 
 		    		if (found === 0) {
 				    	//newWord.letterCheck(userGuess);
-				    	console.log("--------------------------------");
+				    	console.log("-------------------------------- \n");
+				    	console.log("index 90: found === 0, showWord");
 				    	console.log(newWord.showWord());
 				    	count++;
 				    	guessesLeft--;
@@ -87,9 +97,11 @@ inquirer.prompt([
 		    		} else {
 		    			console.log("Correct guess!");
 		    			if (newWord.wordCheck() === true) {
+		    				console.log("index 99: correct guess");
 		    				console.log(newWord.showWord());
 		    			} else {
-		    				console.log("--------------------------------");
+		    				console.log("-------------------------------- \n");
+		    				console.log("index 103: else, not correct guess");
 					    	console.log(newWord.showWord());
 					    	console.log("\n You guessed: " + userGuess +"\n");
 		    			}
@@ -102,15 +114,9 @@ inquirer.prompt([
 		    	} else {
 		    		console.log("\n \n !! You already guessed that letter. Please pick another letter. !! \n \n");
 		    		guessPrompt();
-		    	}
-		      
-		      // console.log("You used up all your guesses. Play again.");
+		    	}   
 		    });
 		  }
-
-		  // else {
-		  //   console.log("You used up all your guesses. Play again.");
-		  // }
 		};
 
 	  guessPrompt();

@@ -85,8 +85,12 @@ function Word(word) {
 	this.letterCheck = function(guessedLetter) {
 		var returnCount = 0;
 		this.letters.forEach(function(ltr) {
-			if (ltr.letter === guessedLetter) {
-				lttr.appear = true;
+			//console.log("word.js ltr ", ltr);
+			console.log("word.js ltr.character ", ltr.character);
+			// console.log("word.js ltr.letter ", ltr.letter);
+			// console.log("word.js guessedLetter ", guessedLetter);
+			if (ltr.character === guessedLetter) {
+				ltr.appear = true;
 				returnCount++
 			}
 		})
