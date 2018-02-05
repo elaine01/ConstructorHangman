@@ -1,6 +1,6 @@
 var Letter = require('./letter.js');
 
-function Word(word) {
+var Word = function (word) {
 	this.word = word;
 	this.actualLetters = [];
 	this.letters = [];
@@ -75,8 +75,10 @@ function Word(word) {
 
 	this.wordCheck = function() {
 		if (this.letters.every(function(ltr) {
+			//console.log("word 78: ");
 			return ltr.appear === true;
 		})) {
+			//console.log("word 81: ");
 			this.wordFound = true;
 			return true;
 		}
@@ -86,12 +88,14 @@ function Word(word) {
 		var returnCount = 0;
 		this.letters.forEach(function(ltr) {
 			//console.log("word.js ltr ", ltr);
-			console.log("word.js ltr.character ", ltr.character);
+			//console.log("word.js ltr.character ", ltr.character);
 			// console.log("word.js ltr.letter ", ltr.letter);
 			// console.log("word.js guessedLetter ", guessedLetter);
 			if (ltr.character === guessedLetter) {
 				ltr.appear = true;
+				
 				returnCount++
+				//console.log("word.js 98: returnCount ", returnCount);
 			}
 		})
 		return returnCount
@@ -120,8 +124,10 @@ function Word(word) {
 	this.showWord = function() {
 		var display = '';
 		this.letters.forEach(function(ltr) {
+			var checkLetter = ltr.check(ltr);
 			var thisLetter = ltr.revealCharacter();
 			display += thisLetter;
+			//console.log("word.js 129: display ", display);
 		})
 		return display
 	}
@@ -133,6 +139,8 @@ function Word(word) {
 
 
 }
+
+
 module.exports = Word;
 
 

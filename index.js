@@ -43,7 +43,7 @@ inquirer.prompt([
 		console.log(currentWord);
 
 
-		console.log("\n >>> New Game! \n \n");
+		console.log("\n >>> New Game! \n\n");
 
 	  var newWord = new Word(currentWord);
 	  newWord.getLetters();
@@ -76,43 +76,50 @@ inquirer.prompt([
 		    	for (var k = 0; k < currentGuesses.length; k++) {
 		    		if (userGuess === currentGuesses[k]) {
 		    			haveGuessed = true; // log all current guesses
-		    			console.log("index 79: haveGuessed = true");
+		    			//console.log("index 79: haveGuessed = true");
 		    		}
 		    	}
 		    	if (haveGuessed === false) { // if user didn't already guess the letter
-		    		console.log("index 83: haveguessed === false");
+		    		//console.log("index 83: haveguessed === false");
 		    		currentGuesses.push(userGuess);
 		    		var found = newWord.letterCheck(userGuess);
-		    		console.log("index found ", found);
+		    		//console.log("index 86: newWord.wordCheck() ", newWord.wordCheck());
+		    		//console.log("index found ", found);
 
-		    		if (found === 0) {
+		    		if (found === 0) { // if guessed letter isn't a right answer
 				    	//newWord.letterCheck(userGuess);
-				    	console.log("-------------------------------- \n");
-				    	console.log("index 90: found === 0, showWord");
+				    	console.log("\n -------------------------------- \n");
+				    	//console.log("index 90: found === 0, showWord");
 				    	console.log(newWord.showWord());
 				    	count++;
 				    	guessesLeft--;
-				    	console.log("\n You guessed: " + userGuess + "\n");
+				    	console.log("\n\n Incorrect \n\n You guessed: " + userGuess + "\n");
 				    //	console.log("index.js res", res.userGuess);
-		    		} else {
-		    			console.log("Correct guess!");
+		    		} else { // if guessed letter is correct
+		    			console.log("\n\n Correct guess!");
+		    			//console.log("index 100: newWord.wordCheck() ", newWord.wordCheck());
 		    			if (newWord.wordCheck() === true) {
-		    				console.log("index 99: correct guess");
-		    				console.log(newWord.showWord());
+		    				//console.log("index 102: correct guess ", newWord.wordCheck());
+		    				//console.log("index 103: ", newWord.showWord());
+		    				newWord.wordCheck();
+		    				newWord.showWord();
 		    			} else {
-		    				console.log("-------------------------------- \n");
-		    				console.log("index 103: else, not correct guess");
+		    				console.log("\n -------------------------------- \n");
+		    				//console.log("index 106: else, not correct guess");
+					    	//console.log("index 107: ", newWord.showWord());
 					    	console.log(newWord.showWord());
 					    	console.log("\n You guessed: " + userGuess +"\n");
 		    			}
 		    		}
 		    		if (guessesLeft > 0 && newWord.wordFound === false) {
 		    			guessPrompt();
+		    		} else if (newWord.wordFound === true) {
+		    			console.log("\n\n **** Congrats! You won! **** \n\n");
 		    		} else {
 		    			console.log("\n You used up all your guesses. Play again.");
 		    		}
 		    	} else {
-		    		console.log("\n \n !! You already guessed that letter. Please pick another letter. !! \n \n");
+		    		console.log("\n\n !! You already guessed that letter. Please pick another letter. !! \n \n");
 		    		guessPrompt();
 		    	}   
 		    });
