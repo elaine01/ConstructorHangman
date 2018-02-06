@@ -1,6 +1,6 @@
 # Hangman
 
-This is a city-themed Hangman game built with JavaScript constructors and runs on Node.js. Some parts still need fixing.
+This is a city-themed Hangman game built with JavaScript constructors and runs on Node.js.
 
 ## Play Game
 To play the game, you must:

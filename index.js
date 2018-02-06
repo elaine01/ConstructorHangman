@@ -3,7 +3,7 @@ var inquirer = require('inquirer');
 var isLetter = require('is-letter');
 
 var wordList = [
-	'bangkok', 'landon', 'paris', 'dubai',
+	'bangkok', 'london', 'paris', 'dubai',
 	'singapore', 'istanbul', 'tokyo', 'seoul',
 	'barcelona', 'amsterdam', 'milan', 'taipei',
 	'rome', 'osaka', 'prague', 'madrid', 'dublim'
@@ -39,7 +39,7 @@ inquirer.prompt([
 	} else { // start game
 
 
-		// TEST
+		// for testing purposes
 		console.log(currentWord);
 
 
@@ -76,37 +76,28 @@ inquirer.prompt([
 		    	for (var k = 0; k < currentGuesses.length; k++) {
 		    		if (userGuess === currentGuesses[k]) {
 		    			haveGuessed = true; // log all current guesses
-		    			//console.log("index 79: haveGuessed = true");
 		    		}
 		    	}
 		    	if (haveGuessed === false) { // if user didn't already guess the letter
-		    		//console.log("index 83: haveguessed === false");
 		    		currentGuesses.push(userGuess);
 		    		var found = newWord.letterCheck(userGuess);
-		    		//console.log("index 86: newWord.wordCheck() ", newWord.wordCheck());
-		    		//console.log("index found ", found);
 
 		    		if (found === 0) { // if guessed letter isn't a right answer
-				    	//newWord.letterCheck(userGuess);
+
 				    	console.log("\n -------------------------------- \n");
-				    	//console.log("index 90: found === 0, showWord");
 				    	console.log(newWord.showWord());
 				    	count++;
 				    	guessesLeft--;
 				    	console.log("\n\n Incorrect \n\n You guessed: " + userGuess + "\n");
-				    //	console.log("index.js res", res.userGuess);
+
 		    		} else { // if guessed letter is correct
 		    			console.log("\n\n Correct guess!");
-		    			//console.log("index 100: newWord.wordCheck() ", newWord.wordCheck());
+
 		    			if (newWord.wordCheck() === true) {
-		    				//console.log("index 102: correct guess ", newWord.wordCheck());
-		    				//console.log("index 103: ", newWord.showWord());
 		    				newWord.wordCheck();
 		    				newWord.showWord();
 		    			} else {
 		    				console.log("\n -------------------------------- \n");
-		    				//console.log("index 106: else, not correct guess");
-					    	//console.log("index 107: ", newWord.showWord());
 					    	console.log(newWord.showWord());
 					    	console.log("\n You guessed: " + userGuess +"\n");
 		    			}
@@ -125,12 +116,8 @@ inquirer.prompt([
 		    });
 		  }
 		};
-
 	  guessPrompt();
-
 	}
-
-
 
 });
 
